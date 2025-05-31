@@ -22,6 +22,9 @@ class DayEntry(models.Model):
     date = models.DateField(verbose_name='Fecha')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Cantidad')
 
+    def __str__(self):
+        return f""
+        
 class WeekPlanner(models.Model):
     start_day = models.DateField(unique=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)

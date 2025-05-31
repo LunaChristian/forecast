@@ -5,6 +5,7 @@ from .models import WeekPlanner, DayEntry
 class DayEntryInline(admin.TabularInline):  # o admin.TabularInline para estilo vertical
     model = DayEntry
     extra = 0
+    max_num = 7
     readonly_fields = ('day_name', 'date')  # 👈 Opcional: evita que se modifiquen
     can_delete = False                     # 👈 Opcional: evita que se borren desde el admin
     fields = ('day_name', 'date', 'quantity')
