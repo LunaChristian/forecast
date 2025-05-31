@@ -23,7 +23,7 @@ class DayEntry(models.Model):
     quantity = models.PositiveIntegerField(default=0, verbose_name='Cantidad')
 
 class WeekPlanner(models.Model):
-    start_day = models.DateField()
+    start_day = models.DateField(unique=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def save(self, *args, **kwargs):
