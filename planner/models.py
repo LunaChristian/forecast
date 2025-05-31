@@ -1,11 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
 
 # Create your models here.
 
 class WeekPlanner(models.Model):
     start_day = models.DateField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def save(self, *args, **kwargs):
+        if self.start_day.weekday() != 0:
+            raise ValidationError("La fecha de inicio debe ser un lunes.")
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return f"La semana comienza el {self.start_day}"
