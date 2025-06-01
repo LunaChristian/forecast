@@ -14,7 +14,7 @@ class DayEntryInline(admin.TabularInline):  # o admin.TabularInline para estilo 
 @admin.register(WeekPlanner)
 class WeekPlannerAdmin(admin.ModelAdmin):
     inlines = [DayEntryInline]
-    list_display = ('start_day', 'created_by')
+    list_display = ('start_day', 'created_by',)
     list_filter = ('created_by',)
     ordering = ('-start_day',)
 

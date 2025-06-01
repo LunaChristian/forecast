@@ -1,0 +1,72 @@
+/* Estilos generales */
+body {
+    font-family: 'Cal Sans', sans-serif;
+    background-color: #212529;
+    color: white;
+    padding-top: 80px; /* Ajustar el espacio superior para el contenido */
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.navbar .navbar-nav .btn {
+    font-size: 16px;
+    margin-right: 15px;
+    text-decoration: none; /* Eliminar subrayado en los botones */
+}
+
+.navbar .navbar-nav .btn:hover {
+    background-color: #9f9f9f;
+}
+
+.section {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+footer .nav-link {
+    font-size: 18px;
+    text-decoration: none; /* Eliminar subrayado en los enlaces de redes sociales */
+}
+
+footer .nav-link:hover {
+    color: #7b7b7b;
+}
+
+/* Asegurando que las secciones dentro del main sean responsivas */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .row {
+        display: block;
+    }
+
+    .col-md-4 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Personalización adicional de la sección principal */
+section {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #3C7EFF;
+    border-radius: 5px;
+}
+
+/* Botones de Sign Up y Login */
+.btn-outline-light {
+    color: white;
+    border-color: white;
+}
+
+.btn-outline-light:hover {
+    background-color: #3C7EFF; /* Color de fondo azul cuando el mouse pasa sobre el botón */
+    border-color: #3C7EFF;     /* Cambiar el borde al mismo color */
+    color: white;              /* Asegurar que el texto se mantenga blanco */
+}
