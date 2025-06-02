@@ -9,22 +9,30 @@
         <h4>Semana del {{ semana.start_day|date:"d/m/Y" }}</h4>
     </div>
     <div class="card-body">
-        <table class="table table-bordered text-center">
-            <thead class="table-light">
-                <tr>
-                    {% for entrada in entradas %}
-                        <th>{{ entrada.day_name|title }}<br><small>{{ entrada.date|date:"d/m" }}</small></th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% for entrada in entradas %}
-                        <td>{{ entrada.quantity }}</td>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
+        <form method="POST">
+            {% csrf_token %}
+            <table class="table table-bordered text-center">
+                <thead class="table-light">
+                    <tr>
+                        {% for entrada in entradas %}
+                        <th>
+                            {{ entrada.day_name|title|slice:":3" }}<br><small>{{ entrada.date|date:"d/m" }}</small>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for form in forms %}
+                        <td>
+                            <input type="number" name="cantidad_{{ entrada.id }}" value="{{ entrada.quantity }}" class="form-control text-center" min="0">
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Guardar cambios</button>
+        </form>
     </div>
 </div>
 {% endblock %}
