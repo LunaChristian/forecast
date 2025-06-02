@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Semanas registradas</h2>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Inicio</th>
+                <th>Creado por</th>
+                <th>Ver</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for semana in semanas %}
+            <tr>
+                <td>{{ semana.start_day|date:"d/m/Y" }}</td>
+                <td>{{ semana.created_by.username }}</td>
+                <td>
+                    <a href="{% url 'pronosticos:detalle_semana' semana.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -4,10 +4,14 @@ from .models import WeekPlanner
 from .forms import DayEntryForm
 
 @login_required
+def dashboard(request):
+    semanas = WeekPlanner.objects.order_by('-start_day')
+    return render(request, 'pronosticos/dashboard.html', {'semanas': semanas})
+
+@login_required
 def home_redirect(request):
     # Redirige al nombre de vista configurado como inicio tras login
     return redirect('ultima_semana')
-
 
 @login_required 
 def mostrar_ultima_semana(request):
@@ -15,13 +19,18 @@ def mostrar_ultima_semana(request):
     entradas = semana.entries.order_by('date') if semana else []
 
     if request.method == 'POST':
+        if not request.user.has_perm('pronosticos.change_dayentry'):
+            return redirect('pronosticos:ultima_semana')  # evitar edición no autorizada
+        
         for entrada in entradas:
             form = DayEntryForm(request.POST, instance=entrada, prefix=str(entrada.id))
             if form.is_valid():
                 form.save()
         return redirect('ultima_semana')
 
-    forms = [DayEntryForm(instance=entrada, prefix=str(entrada.id)) for entrada in entradas]
+    forms = []
+    if request.user.has_perm('pronosticos.change_dayentry'):
+        forms = [DayEntryForm(instance=entrada, prefix=str(entrada.id)) for entrada in entradas]
 
     context = {
         'semana': semana,
