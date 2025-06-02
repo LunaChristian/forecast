@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from pronosticos.views import home_redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pronosticos.urls')),
-]
+    path('pronosticos/', include('pronosticos.urls')),
+    path('usuarios/', include('usuarios.urls')),
+    path('', home_redirect, name='home'),
+] 
