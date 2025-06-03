@@ -1,5 +1,5 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from .models import WeekPlanner
 from .forms import DayEntryForm
 
@@ -17,7 +17,7 @@ def home_redirect(request):
 def mostrar_ultima_semana(request):
     semana = WeekPlanner.objects.order_by('-start_day').first()
     entradas = semana.entries.order_by('date') if semana else []
-
+    
     if request.method == 'POST':
         if not request.user.has_perm('pronosticos.change_dayentry'):
             return redirect('pronosticos:ultima_semana')  # evitar edición no autorizada
@@ -26,7 +26,7 @@ def mostrar_ultima_semana(request):
             form = DayEntryForm(request.POST, instance=entrada, prefix=str(entrada.id))
             if form.is_valid():
                 form.save()
-        return redirect('ultima_semana')
+        return redirect('pronosticos:ultima_semana')
 
     forms = []
     if request.user.has_perm('pronosticos.change_dayentry'):

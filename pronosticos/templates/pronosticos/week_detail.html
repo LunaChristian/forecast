@@ -26,7 +26,8 @@
                         <tr>
                             {% for form in forms %}
                             <td>
-                                <input type="number" name="cantidad_{{ entrada.id }}" value="{{ entrada.quantity }}" class="form-control text-center" min="0">
+                                <!---<input type="number" name="cantidad_{{ entrada.id }}" value="{{ entrada.quantity }}" class="form-control text-center" min="0">-->
+                                {{ form.quantity }}
                             </td>
                             {% endfor %}
                         </tr>

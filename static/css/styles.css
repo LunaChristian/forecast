@@ -1,7 +1,8 @@
 /* Estilos generales */
 body {
     font-family: 'Cal Sans', sans-serif;
-    background-color: #212529;
+    /*background-color: #212529;*/
+    background-color: #ea0000;
     color: white;
     padding-top: 80px; /* Ajustar el espacio superior para el contenido */
     padding-left: 10px;
@@ -69,4 +70,17 @@ section {
     background-color: #3C7EFF; /* Color de fondo azul cuando el mouse pasa sobre el botón */
     border-color: #3C7EFF;     /* Cambiar el borde al mismo color */
     color: white;              /* Asegurar que el texto se mantenga blanco */
+}
+
+/* 🔧 Eliminar flechas en inputs type="number" (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 🔧 Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
