@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Inicio</th>
+                <th>Fin</th>
                 <th>Creado por</th>
                 <th>Ver</th>
             </tr>
@@ -15,6 +16,7 @@
             {% for semana in semanas %}
             <tr>
                 <td>{{ semana.start_day|date:"d/m/Y" }}</td>
+                <td>{{ semana.end_day|date:"d/m/Y" }}</td>
                 <td>{{ semana.created_by.username }}</td>
                 <td>
                     <a href="{% url 'pronosticos:detalle_semana' semana.id %}" class="btn btn-outline-primary btn-sm">Ver</a>

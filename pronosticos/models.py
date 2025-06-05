@@ -47,5 +47,10 @@ class WeekPlanner(models.Model):
                     quantity=0
                 )
     
+    @property
+    def end_day(self):
+        return self.start_day + timedelta(days=6)
+    
     def __str__(self):
         return f"La semana comienza el {self.start_day.strftime('%d/%m/%Y')}"
+    

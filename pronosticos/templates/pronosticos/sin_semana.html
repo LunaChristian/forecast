@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Semana del {{ semana.start_day|date:"d/m/Y" }}{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>No hay información disponible para esta semana.</h4>
+        <p>Contactá al administrador si creés que debería estar cargada.</p>
+    </div>
+</div>
+{% endblock %}
