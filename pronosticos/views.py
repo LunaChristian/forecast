@@ -6,7 +6,9 @@ from .forms import DayEntryForm
 
 @login_required
 def dashboard(request):
-    semanas = WeekPlanner.objects.order_by('-start_day')
+    hoy = date.today()
+    lunes_actual = hoy - timedelta(days=hoy.weekday())
+    semanas = WeekPlanner.objects.filter(start_day__gte=lunes_actual).order_by('start_day')
     return render(request, 'pronosticos/dashboard.html', {'semanas': semanas})
 
 @login_required
@@ -45,7 +47,7 @@ def mostrar_ultima_semana(request):
 @login_required
 def ver_semana_actual(request):
     hoy = date.today()
-    inicio = hoy + timedelta(days=hoy.weekday())
+    inicio = hoy - timedelta(days=hoy.weekday())
     
     try:
         semana = WeekPlanner.objects.get(start_day=inicio)
