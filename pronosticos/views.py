@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import get_object_or_404, render, redirect
 from datetime import date, timedelta
 from .models import WeekPlanner
@@ -78,3 +78,15 @@ def detalle_semana(request, semana_id):
         'forms': forms,
     }
     return render(request, 'pronosticos/week_detail.html', context)
+
+@login_required
+@permission_required('pronosticos.change_dayentry', raise_exception=True)
+def historial(request):
+    #hoy = date.today()
+    #lunes_actual = hoy - timedelta(days=hoy.weekday())
+    semanas = WeekPlanner.objects.order_by('start_day')
+    
+    context = {
+        'semanas': semanas
+    }
+    return render(request, 'pronosticos/historial.html', context)

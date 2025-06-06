@@ -2,14 +2,14 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Semanas registradas</h2>
+    <h2>Historial de semanas</h2>
     <table class="table mt-4">
         <thead>
             <tr>
                 <th>Inicio</th>
                 <th>Fin</th>
                 <th>Creado por</th>
-                <th></th>
+                <th>Ver</th>
             </tr>
         </thead>
         <tbody>
@@ -26,5 +26,5 @@
         </tbody>
     </table>
 </div>
-<a href="{% url 'pronosticos:historial' %}" class="btn btn-secondary mb-3">📂 Ver historial completo</a>
+<a href="{% url 'pronosticos:dashboard' %}" class="btn btn-secondary mb-3">📂 Dashboard</a>
 {% endblock %}
