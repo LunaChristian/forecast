@@ -2,9 +2,10 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import get_object_or_404, render, redirect
 from datetime import date, timedelta
 from .models import WeekPlanner
-from .forms import DayEntryForm
+from .forms import DayEntryForm, WeekPlannerForm
 
 @login_required
+@permission_required('pronosticos.change_dayentry', raise_exception=True)
 def dashboard(request):
     hoy = date.today()
     lunes_actual = hoy - timedelta(days=hoy.weekday())
@@ -90,3 +91,17 @@ def historial(request):
         'semanas': semanas
     }
     return render(request, 'pronosticos/historial.html', context)
+
+@login_required
+@permission_required('pronosticos.change_dayentry', raise_exception=True)
+def crear_semana(request):
+    if request.method == 'POST':
+        form = WeekPlannerForm(request.POST)
+        if form.is_valid():
+            semana = form.save(commit=False)
+            semana.created_by = request.user
+            semana.save()
+            return redirect('pronosticos:dashboard')
+    else:
+        form = WeekPlannerForm()
+    return render(request, 'pronosticos/crear_semana.html', {'form':form})

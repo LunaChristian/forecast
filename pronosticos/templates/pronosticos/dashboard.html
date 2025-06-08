@@ -19,7 +19,7 @@
                 <td>{{ semana.end_day|date:"d/m/Y" }}</td>
                 <td>{{ semana.created_by.username }}</td>
                 <td>
-                    <a href="{% url 'pronosticos:detalle_semana' semana.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
+                    <a href="{% url 'pronosticos:detalle_semana' semana.id %}" class="btn btn-outline-primary btn-sm">Editar</a>
                 </td>
             </tr>
             {% endfor %}
@@ -27,4 +27,5 @@
     </table>
 </div>
 <a href="{% url 'pronosticos:historial' %}" class="btn btn-secondary mb-3">📂 Ver historial completo</a>
+<a href="{% url 'pronosticos:crear_semana' %}" class="btn btn-secondary mb-3">📂 Crear una semana</a>
 {% endblock %}
